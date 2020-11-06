@@ -1,0 +1,82 @@
+//UC1
+Create database AddressBookService; //Create database
+
+Use AddressBookService;
+
+//UC2
+Create table AddressBook
+(
+  Firstname VARCHAR(10),
+  Lastname VARCHAR(10),
+  Address VARCHAR(20),
+  City VARCHAR(20),
+  State VARCHAR(20),
+  Zip long,
+  Phno long,
+  Email VARCHAR(20)
+);
+
+//UC3
+Insert into addressbook (Firstname,Lastname,Address,City,State,Zip,Phno,Email) values
+    ('Akhil','Kumar','RKColony','Mahabubnagar','Telangana','567659','9087654321','abc@gmail.com'),
+    ('bill','raju','RKColony','Chennai','Tamilnadu','876529','9007654321','bcd@gmail.com'),
+    ('Abhi','reddy','RKColony','Hyderabad','Telangana','659098','9897654321','xyz@gmail.com'),
+    ('nikhil','Kumar','RKColony','Kurnool','AP','789659','9987654321','abhi@gmail.com'),
+    ('Akhi','akki','vKColony','Kadapa','AP','965900','8765544321','akki@gmail.com');
+
+Insert into addressbook (Firstname,Lastname,Address,City,State,Zip,Phno,Email) values
+    ('Rajesh','Reddy','Balajinagar','Mahabubnagar','Telangana','567659','90876590321','amj@gmail.com'),
+
+Select * from addressbook;
+
+
+//UC4
+Update addressbook 
+set
+   lastname = 'gates',
+   address = 'BCColony',
+   City = 'Hosur',
+   state = 'karnataka',
+   Zip ='509234',
+   Phno ='9990876451',
+   Email = 'raj@gmail.com'
+where
+   firstname = 'bill';
+
+//UC5
+Delete from addressbook where firstname = 'abhi' and lastname = 'reddy';
+
+//UC6
+Select * from addressbook where city = 'Hosur';
+Select * from addressbook where state = 'ap';
+
+//UC7
+Select city,count(city) from addressbook where city= 'hosur' group by city;
+Select state,count(state) from addressbook where state = 'ap' group by state;
+Select firstname,count(state) from addressbook where state = 'ap' group by firstname;
+
+//UC8
+Select firstname,lastname from addressbook where city = 'Mahabubnagar' order by firstname;
+
+//UC9
+Alter table addressbook add type varchar(20);
+
+Update addressbook set type = 'Friends' where firstname = 'akhil';
+Update addressbook set type = 'family' where firstname = 'nikhil';
+Update addressbook set type = 'Profession' where firstname = 'bill';
+Update addressbook set type = 'Friends' where firstname = 'Rajesh';
+Update addressbook set type = 'Profession' where firstname = 'akhi';
+
+//UC10
+Select type,count(type) from addressbook group by type;
+
+//UC11
+Insert into addressbook (Firstname,Lastname,Address,City,State,Zip,Phno,Email,type) values
+    ('Vamshi','dhar','PadmavatiColony','Kollapur','Telangana','415219','7415159032','vamshi@gmail.com','Family');
+
+Select * from addressbook;
+
+Insert into addressbook (Firstname,Lastname,Address,City,State,Zip,Phno,Email,type) values
+    ('Vamshi','dhar','PadmavatiColony','Kollapur','Telangana','415219','7415159032','vamshi@gmail.com','Friends');
+
+Select * from addressbook;
